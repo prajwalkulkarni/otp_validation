@@ -41,21 +41,19 @@ if(isset($_POST['checkValidity'])){
 else if(isset($_POST['lgn'])){
 
    
-    $otpp = $_POST['pass'];
+    $otp = $_POST['pass'];
 
     
     
-    
 
-    $validate = mysqli_query($con,"SELECT * FROM otp WHERE otpNo='$otpp' AND isExpired!=1 AND NOW() <= DATE_ADD(date_created, INTERVAL 1 MINUTE)");
+    $validate = mysqli_query($con,"SELECT * FROM otp WHERE otpNo='$otp' AND isExpired!=1 AND NOW() <= DATE_ADD(date_created, INTERVAL 1 MINUTE)");
     echo(mysqli_num_rows($validate));
     if(mysqli_num_rows($validate)==1){
-        
-       
+         
 
         header('location:index.php'); 
 
-        $validate = mysqli_query($con,"UPDATE otp SET isExpired = 1 WHERE otpNo='$otpp'");
+        $validate = mysqli_query($con,"UPDATE otp SET isExpired = 1 WHERE otpNo='$otp'");
         
         
     }
